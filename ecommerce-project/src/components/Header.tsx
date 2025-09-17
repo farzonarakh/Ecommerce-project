@@ -6,14 +6,22 @@ import MobileLogoWhite from '../assets/images/mobile-logo-white.png';
 import SearchIcon from '../assets/images/icons/cart-icon.png';
 import { useState } from 'react';
 
-export function Header({ cart }) {
+type HeaderProps = {
+  cart: {
+    productId: string;
+    quantity: number;
+    deliveryOptionId: string;
+  }[];
+}
+
+export function Header({ cart }: HeaderProps) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const searchText = searchParams.get('search');
 
   const [search, setSearch] = useState(searchText || '');
 
-  const updateSearchInput = (event) => {
+  const updateSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
   };
 
